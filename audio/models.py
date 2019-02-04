@@ -9,6 +9,7 @@ from queued_storage.backends import QueuedStorage
 from commons.custom_model_fields import VariableStorageFileField
 
 
+'''
 def get_accessed_time(self, name):
     """
     Django +1.10
@@ -51,6 +52,39 @@ def generate_filename(self, filename):
     return self.get_storage(filename).generate_filename(filename)
 
 
+def storage_save(self, name, content, max_length=None):
+    """
+    Saves the given content with the given name using the local
+    storage. If the :attr:`~queued_storage.backends.QueuedStorage.delayed`
+    attribute is ``True`` this will automatically call the
+    :meth:`~queued_storage.backends.QueuedStorage.transfer` method
+    queuing the transfer from local to remote storage.
+    :param name: file name
+    :type name: str
+    :param content: content of the file specified by name
+    :type content: :class:`~django:django.core.files.File`
+    :rtype: str
+    """
+    cache_key = self.get_cache_key(name)
+    cache.set(cache_key, False)
+
+    # Use a name that is available on both the local and remote storage
+    # systems and save locally.
+    name = self.get_available_name(name)
+    try:
+        name = self.local.save(name, content, max_length=max_length)
+    except TypeError:
+        # Django < 1.10
+        name = self.local.save(name, content)
+
+    # Pass on the cache key to prevent duplicate cache key creation,
+    # we save the result in the storage to be able to test for it
+    if not self.delayed:
+        self.result = self.transfer(name, cache_key=cache_key)
+    return name
+'''
+
+
 def get_default_storage():
     if settings.DEBUG:
         return None
@@ -59,10 +93,11 @@ def get_default_storage():
         'django.core.files.storage.FileSystemStorage',
         'storages.backends.dropbox.DropBoxStorage', task='queued_storage.tasks.TransferAndDelete')
 
-    storage.get_accessed_time = types.MethodType(get_accessed_time, storage)
-    storage.get_created_time = types.MethodType(get_created_time, storage)
-    storage.get_modified_time = types.MethodType(get_modified_time, storage)
-    storage.generate_filename = types.MethodType(generate_filename, storage)
+    # storage.get_accessed_time = types.MethodType(get_accessed_time, storage)
+    # storage.get_created_time = types.MethodType(get_created_time, storage)
+    # storage.get_modified_time = types.MethodType(get_modified_time, storage)
+    # storage.generate_filename = types.MethodType(generate_filename, storage)
+    # storage.save = types.MethodType(storage_save, storage)
     return storage
 
 

@@ -8,13 +8,15 @@ Django==2.1.5
 django-appconf==1.0.2
 django-bmemcached==0.2.3
 django-celery==3.1.17
-django-queued-storage==0.8.0
+django-queued-storage==0.8.1.dev71+gf8225d8
 django-storages==1.7.1
 dropbox==9.3.0
 gunicorn==19.9.0
 idna==2.8
 kombu==4.2.2.post1
+packaging==16.8
 psycopg2-binary==2.7.7
+pyparsing==2.3.1
 python-binary-memcached==0.28.0
 pytz==2018.9
 rcssmin==1.0.6
