@@ -8,7 +8,7 @@ Django==2.1.5
 django-appconf==1.0.2
 django-bmemcached==0.2.3
 django-celery==3.1.17
-django-queued-storage==git+https://github.com/jazzband/django-queued-storage/
+git+https://github.com/jazzband/django-queued-storage
 django-storages==1.7.1
 dropbox==9.3.0
 gunicorn==19.9.0
