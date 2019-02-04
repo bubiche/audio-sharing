@@ -1,5 +1,8 @@
 from .base import *
+from .base import INSTALLED_APPS
 import os
+
+from queued_storage.backends import QueuedStorage
 
 
 DEBUG = False
@@ -19,3 +22,5 @@ CACHES = {
         }
     }
 }
+
+INSTALLED_APPS = INSTALLED_APPS + ['queued_storage']
