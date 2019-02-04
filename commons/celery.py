@@ -1,8 +1,11 @@
 from celery import Celery
 from django.conf import settings
+import os
 
 
-app = Celery('root')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'commons.settings')
+
+app = Celery('commons')
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.
