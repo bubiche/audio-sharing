@@ -8,8 +8,10 @@ dropbox==9.3.0
 gunicorn==19.9.0
 idna==2.8
 psycopg2-binary==2.7.7
+python-memcached==1.59
 pytz==2018.9
 rcssmin==1.0.6
+redis==3.1.0
 requests==2.21.0
 rjsmin==1.0.12
 six==1.12.0
