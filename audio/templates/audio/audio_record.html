@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load compress %}
+
+{% block additional_headers %}
+  <div style="padding:10px">
+    <h2>Record Your Audio</h2>
+
+    Output Audio Encoding:
+    <select id="encodingSelect">
+      <option value="mp3">MP3</option>
+      <option value="wav">WAV</option>
+      <option value="ogg">OGG</option>
+    </select>
+
+    <button id="recordButton">Record</button>
+    <button id="stopButton" disabled>Stop</button>
+
+    <div id="formats"></div>
+    <h3>Log</h3>
+    <pre id="logDump"></pre>
+
+    <h3>Recordings</h3>
+    <ol id="recordingsList"></ol>
+
+    {% if DEBUG %}
+      <script src="{% static 'js/audio_record_lib/WebAudioRecorder.min.js' %}"></script>
+      <script src="{% static 'js/audio_record.js' %}"></script>
+    {% else %}
+      {% compress js %}
+        <script>var audioRecordLibWorkerPath = "{% static 'js/audio_record_lib/' %}"</script>
+        <script src="{% static 'js/audio_record_lib/WebAudioRecorder.min.js' %}"></script>
+        <script src="{% static 'js/audio_record.js' %}"></script>
+      {% endcompress %}
+    {% endif %}
+  </div>
+{% endblock %}

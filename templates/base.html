@@ -1,0 +1,24 @@
+{% load static %}
+{% load compress %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head itemscope itemtype="http://schema.org/WebSite">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Chuc Be Ngu Ngon">
+
+    <link rel="shortcut icon" href="{% static 'favicons/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+
+    <title itemprop="name">{% block title %}Chuc Be Ngu Ngon{% endblock %}</title>
+
+    {% block additional_headers %}{% endblock %}
+  </head>
+
+  <body>
+    {% block additional_body %}{% endblock %}
+  </body>
+</html>

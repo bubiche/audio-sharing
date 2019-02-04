@@ -1,8 +1,10 @@
 # audio-sharing
 
-Simple django application for recording and sharing audio
+Simple Python Django + HTML + vanilla JS application for recording and sharing audio
 
-This project is configured to be deployed on *Heroku*: https://www.heroku.com/
+- This project is configured to be deployed on *Heroku*: https://www.heroku.com/
+- Audio recording is done by using https://github.com/higuma/web-audio-recorder-js
+
 
 
 # Some environment variables we should pay attention to
