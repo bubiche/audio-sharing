@@ -1,3 +1,5 @@
 from django.contrib import admin
+from audio.models import AudioUpload
 
-# Register your models here.
+
+admin.site.register(AudioUpload)

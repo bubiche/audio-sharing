@@ -18,6 +18,6 @@ from django.urls import include, path
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('bubiche-audio-record-admin/', admin.site.urls),
     path('', include('audio.urls')),
 ]
