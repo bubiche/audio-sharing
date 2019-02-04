@@ -9,6 +9,7 @@ __pycache__/
 .Python
 venv/
 collected_static_files/
+media/
 develop-eggs/
 dist/
 eggs/
