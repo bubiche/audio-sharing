@@ -128,5 +128,11 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
 
+
+# Media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+# Celery (Async tasks)
+CELERY_BROKER_URL = os.environ.get('REDIS_URL')
