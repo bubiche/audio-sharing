@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load compress %}
 
 {% block additional_headers %}
   <div style="padding:10px">
@@ -23,15 +22,8 @@
     <h3>Recordings</h3>
     <ol id="recordingsList"></ol>
 
-    {% if DEBUG %}
-      <script src="{% static 'js/audio_record_lib/WebAudioRecorder.min.js' %}"></script>
-      <script src="{% static 'js/audio_record.js' %}"></script>
-    {% else %}
-      {% compress js %}
-        <script>var audioRecordLibWorkerPath = "{% static 'js/audio_record_lib/' %}"</script>
-        <script src="{% static 'js/audio_record_lib/WebAudioRecorder.min.js' %}"></script>
-        <script src="{% static 'js/audio_record.js' %}"></script>
-      {% endcompress %}
-    {% endif %}
+    <script>var audioRecordLibWorkerPath = "{% static 'js/audio_record_lib/' %}"</script>
+    <script src="{% static 'js/audio_record_lib/WebAudioRecorder.min.js' %}"></script>
+    <script src="{% static 'js/audio_record.js' %}"></script>
   </div>
 {% endblock %}
