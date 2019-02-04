@@ -59,10 +59,10 @@ def get_default_storage():
         'django.core.files.storage.FileSystemStorage',
         'storages.backends.dropbox.DropBoxStorage', task='queued_storage.tasks.TransferAndDelete')
 
-    storage.get_accessed_time = types.MethodType(get_accessed_time, storage, QueuedStorage)
-    storage.get_created_time = types.MethodType(get_created_time, storage, QueuedStorage)
-    storage.get_modified_time = types.MethodType(get_modified_time, storage, QueuedStorage)
-    storage.generate_filename = types.MethodType(generate_filename, storage, QueuedStorage)
+    storage.get_accessed_time = types.MethodType(get_accessed_time, storage)
+    storage.get_created_time = types.MethodType(get_created_time, storage)
+    storage.get_modified_time = types.MethodType(get_modified_time, storage)
+    storage.generate_filename = types.MethodType(generate_filename, storage)
     return storage
 
 
