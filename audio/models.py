@@ -105,7 +105,7 @@ def get_default_storage():
 
 class AudioUpload(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, db_index=True)
 
     # either an uploaded file or a url
     storage = get_default_storage()
