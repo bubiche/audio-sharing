@@ -5,6 +5,7 @@ from django.conf import settings
 import uuid
 import types
 from queued_storage.backends import QueuedStorage
+from db_file_storage.model_utils import delete_file, delete_file_if_needed
 
 from commons.custom_model_fields import VariableStorageFileField
 
@@ -89,8 +90,9 @@ def get_default_storage():
     if settings.DEBUG:
         return None
 
+    # save to database first then upload to dropbox in background worker
     storage = QueuedStorage(
-        'django.core.files.storage.FileSystemStorage',
+        'db_file_storage.storage.DatabaseFileStorage',
         'storages.backends.dropbox.DropBoxStorage', task='queued_storage.tasks.TransferAndDelete')
 
     # storage.get_accessed_time = types.MethodType(get_accessed_time, storage)
@@ -107,5 +109,19 @@ class AudioUpload(models.Model):
 
     # either an uploaded file or a url
     storage = get_default_storage()
-    file = VariableStorageFileField(upload_to='audio_records', blank=True, null=True, storage=storage)
+    file = VariableStorageFileField(upload_to='audio.AudioFile/content/file_name/mime_type', blank=True, null=True, storage=storage)
     direct_url = models.TextField(validators=[URLValidator()], blank=True, null=True)  # I just prefer this to URLField :/
+
+    def save(self, *args, **kwargs):
+        delete_file_if_needed(self, 'file')
+        super(AudioUpload, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        super(AudioUpload, self).delete(*args, **kwargs)
+        delete_file(self, 'file')
+
+
+class AudioFile(models.Model):
+    content = models.TextField()
+    file_name = models.CharField(max_length=255)
+    mime_type = models.CharField(max_length=50)

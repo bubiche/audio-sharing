@@ -19,5 +19,6 @@ from django.urls import include, path
 
 urlpatterns = [
     path('bubiche-audio-record-admin/', admin.site.urls),
+    path('files/', include('db_file_storage.urls')),
     path('', include('audio.urls')),
 ]

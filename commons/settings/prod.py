@@ -29,6 +29,6 @@ CACHES = {
 
 
 # Queued storage settings
-INSTALLED_APPS = INSTALLED_APPS + ['queued_storage']
+INSTALLED_APPS = INSTALLED_APPS + ['db_file_storage', 'queued_storage']
 QUEUED_STORAGE_RETRIES = 2
 QUEUED_STORAGE_RETRY_DELAY = 60
