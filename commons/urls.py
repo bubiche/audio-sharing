@@ -20,5 +20,6 @@ from django.urls import include, path
 urlpatterns = [
     path('bubiche-audio-record-admin/', admin.site.urls),
     path('s3direct/', include('s3direct.urls')),
+    path('.well-known/', include('letsencrypt.urls')),
     path('', include('audio.urls')),
 ]

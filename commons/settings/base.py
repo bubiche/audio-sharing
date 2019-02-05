@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     's3direct',
+    'letsencrypt',  # for ssl certs: https://www.petercuret.com/how-ssl-encrypt-your-django-heroku-projects-free-lets-encrypt/
     'audio',
 ]
 
