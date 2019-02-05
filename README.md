@@ -27,5 +27,5 @@ Simple Python Django + HTML + vanilla JS application for recording and sharing a
 - Upload done in Django Admin (sorry, no url, I don't want people to use my site for file sharing)
 ![Upload Screenshot](screenshot/upload-djagno-admin.png "Upload Screenshot")
 
-- Playback: http://chuc-be-ngu-ngon.herokuapp.com/play/4b0fc0b2-c6d0-4a53-a27d-a3f65f66d2f3/ (Sung by yours truly :blush:)
+- Playback: https://chuc-be-ngu-ngon.herokuapp.com/play/4b0fc0b2-c6d0-4a53-a27d-a3f65f66d2f3/ (Sung by yours truly :blush:)
 ![Playback Screenshot](screenshot/playback.png "Playback Screenshot")
