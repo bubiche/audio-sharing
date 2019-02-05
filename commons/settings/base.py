@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'storages',
+    's3direct',
     'audio',
 ]
 
@@ -186,5 +186,39 @@ LOGGING = {
         'py.warnings': {
             'handlers': ['console'],
         },
+    }
+}
+
+
+# AWS
+
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+
+# Bucket name
+AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+# The region of your bucket, more info:
+# http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+AWS_S3_REGION_NAME = os.environ.get('AWS_S3_REGION_NAME')
+
+# The endpoint of your bucket, more info:
+# http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+AWS_S3_ENDPOINT_URL = os.environ.get('AWS_S3_ENDPOINT_URL')
+
+S3DIRECT_DESTINATIONS = {
+    'my_s3_destination': {
+        # "key" [required] The location to upload file
+        #       1. String: folder path to upload to
+        #       2. Function: generate folder path + filename using a function
+        'key': 'uploads/audio',
+
+        # "auth" [optional] Limit to specfic Django users
+        #        Function: ACL function
+        'auth': lambda u: u.is_staff,
+
+        # "content_disposition" [optional] Custom content disposition header
+        #                       String: header
+        'content_disposition': lambda x: 'attachment; filename="{}"'.format(x),
     }
 }
