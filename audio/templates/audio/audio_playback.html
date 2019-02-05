@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block additional_headers %}
+  <link rel="stylesheet" href="{% static 'css/audio_playback.css' %}">
+{% endblock %}
+
+{% block additional_body %}
+  <div id="center-div">
+    <p id="audio-name">{{ audio_name }}</p>
+    <audio controls>
+      <source src="{{ audio_url }}" />
+      Your browser does not playing audio :(
+    </audio>
+
+  </div>
+{% endblock %}

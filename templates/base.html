@@ -12,12 +12,19 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
 
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
     <title itemprop="name">{% block title %}Chuc Be Ngu Ngon{% endblock %}</title>
 
     {% block additional_headers %}{% endblock %}
   </head>
 
   <body>
+  <div id="header">
+    <ul id="menu">
+      <li><a href="/"><span>Chúc Bé Ngủ Ngon</span></a></li>
+    </ul>
+  </div>
     {% block additional_body %}{% endblock %}
   </body>
 </html>

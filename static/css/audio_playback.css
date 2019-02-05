@@ -1,0 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Seaweed+Script);
+
+#center-div {
+  text-align: center;
+  padding-top: 128px;
+}
+
+#audio-name {
+  font-family: "Seaweed Script";
+  color: #333333;
+  text-align: center;
+  font-size: 40px;
+  position: relative;
+  margin: 10px;
+}
